@@ -12,9 +12,13 @@
 
     <header class="header">
         <form class="header__seeker">
-            <input class="seeker__input-item" type="text" required>
+            <input placeholder="Enter name or id" class="seeker__input-item" type="text" required>
             <button class="seeker__serch" type="submit">search</button>
         </form>
+        <div class="container__error">
+            <p class="errorMJ"></p>
+            <p class="state"></p>
+        </div>
     </header>
 
     <main class="poke-view">
@@ -26,7 +30,7 @@
             
             <div class="detaills__name detaills">
                 <h3 class="name__title title">name</h3>
-                <p class="name__paragraph paragraph">bulbasaur(1)</p>
+                <p class="name__paragraph paragraph">bulbasaur(#1)</p>
             </div>
 
             <div class="detaills__desc detaills">
@@ -38,27 +42,29 @@
 
             <div class="detaills__type detaills">
                 <h3 class="type__title title">type</h3>
-                <p class="type__paragraph paragraph">grass</p>
+                <div class="type__paragraph">
+                    <p class=" paragraph">grass</p>
+                </div>
             </div>
 
             <div class="detaills__dimensions detaills">
                 <h3 class="dimensions__title title">dimensions</h3>
-                <p class="dimensions__paragraph paragraph">
-                    weight:69
+                <div class="dimensions__paragraph">
+                    <p class="paragraph paragraph__weight">weight:69 Kg</p>
                     <br>
-                    height: 7
-                </p>
+                    <p class="paragraph paragraph__height">height:7 Cm</p>
+                </div>
             </div>
 
             <div class="detaills__evolute detaills">
                 <h3 class="evolute__title title">chain of evolution</h3>
-                <!-- <figure>
-                    <img src="pikachu.png" alt="Pikachu lanzando un rayo">
-                    <figcaption>Pikachu usando Rayo ⚡</figcaption>
-                </figure> -->
+                <figure class="detaills__figure">
+
+                </figure>
             </div>
 
         </div>
     </main>
+    <script src="app.js"></script>
 </body>
 </html>
