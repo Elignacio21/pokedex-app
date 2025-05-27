@@ -1,0 +1,111 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    box-sizing: border-box;
+}
+
+/*----------------------Header seccion: Start----------------------*/
+.header{
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    background-color:#bb3026 ;
+    align-items: center;
+}
+
+.header__seeker{
+    width: 80%;
+    height: 3rem;
+    padding: 6px;
+    display: flex;
+    border-radius: 4px;
+    box-shadow: 0 0 19px rgb(43, 42, 42);
+    background-color:#434de4;
+    justify-content: center;
+    align-items: center;
+}
+
+.seeker__input-item{
+    width: 140px;
+    height: 25px;
+    border: none;
+    background-color: #e0e0e0;
+    border-radius: 8px 0 0 8px;
+    
+}
+
+.seeker__input-item:focus{
+    
+    outline:2px solid #48e;
+}
+
+.seeker__serch{
+    width: 60px;
+    height: 27px;
+    margin-right: 2px;
+    border-radius: 0 8px 8px 0;
+    border: none;
+    background-color: #4a90e2;
+    
+    border-left:2px solid #141414;
+    
+}
+
+.seeker__serch:hover{
+    background-color: rgb(255, 255, 255);
+}
+/*----------------------Header seccion: END----------------------*/
+
+/*----------------------Main seccion: Start----------------------*/
+.poke-view{
+    width: 100%;
+    min-height: 100vh; ;
+    background-color: #7AC74C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.poke-view__detaills{
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(3,  minmax(150px, 1fr));
+    grid-template-rows: repeat(2, minmax(150px, auto));
+    gap: 10px;
+}
+
+.detaills{
+    background-color: rgb(255, 255, 255);
+}
+
+.title{
+    font-family: 'Press Start 2P', cursive; 
+    font-size: 15px;
+    margin-top: 0;
+    padding: 12px;
+    background-color: #e0e0e0;
+}
+
+.detaills__evolute{
+    grid-column: 2 span;
+}
+
+.paragraph{
+    font-family: 'Roboto', sans-serif;
+    color: #141414;
+    font-size: 22px;
+}
+
+.poke-view__img-container{
+    flex-shrink: 0;
+    width: 500px;
+    height: 350px;
+}
+
+.img-container__image{
+    width: 100%;
+    height: 100%;
+}

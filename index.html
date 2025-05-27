@@ -3,46 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="icon.jpg" type="image/png">
+    <link rel="icon" href="/asserts/icon.jpg" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <title>Poke-app</title>
 </head>
 <body>
 
     <header class="header">
-        <div class="header__input-container">
-            <input class="input-container__input-item" type="text" required>
-        </div>
+        <form class="header__seeker">
+            <input class="seeker__input-item" type="text" required>
+            <button class="seeker__serch" type="submit">search</button>
+        </form>
     </header>
 
     <main class="poke-view">
         <div class="poke-view__img-container detaills-container">
-            <img class="img-container__image" src="" alt="image-Pokemon">
+            <img class="img-container__image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg" alt="image-Pokemon">
         </div>
 
         <div class="poke-view__detaills detaills-container">
             
             <div class="detaills__name detaills">
-                <h2 class="name__title title">name</h2>
-                <p class="name__paragraph paragraph"></p>
+                <h3 class="name__title title">name</h3>
+                <p class="name__paragraph paragraph">bulbasaur</p>
             </div>
 
             <div class="detaills__desc detaills">
-                <h2 class="desc__title title">descripcion</h2>
-                <p class="desc__paragraph paragraph"></p>
+                <h3 class="desc__title title">descripcion</h3>
+                <p class="desc__paragraph paragraph">
+                    A strange seed was\nplanted on its\nback at birth.\fThe plant sprouts\nand grows with\nthis POKéMON.
+                </p>
             </div>
 
             <div class="detaills__type detaills">
-                <h2 class="type__title title">type</h2>
-                <p class="type__paragraph paragraph"></p>
+                <h3 class="type__title title">type</h3>
+                <p class="type__paragraph paragraph">grass</p>
             </div>
 
             <div class="detaills__dimensions detaills">
-                <h2 class="dimensions__title title">dimensions</h2>
-                <p class="dimensions__paragraph paragraph"></p>
+                <h3 class="dimensions__title title">dimensions</h3>
+                <p class="dimensions__paragraph paragraph">
+                    weight:69
+                    <br>
+                    height: 7
+                </p>
             </div>
 
-            <div class="detaills__dimensions detaills">
-                <h2 class="dimensions__title title">chain of evolution</h2>
+            <div class="detaills__evolute detaills">
+                <h3 class="evolute__title title">chain of evolution</h3>
                 <!-- <figure>
                     <img src="pikachu.png" alt="Pikachu lanzando un rayo">
                     <figcaption>Pikachu usando Rayo ⚡</figcaption>
