@@ -1,111 +1,139 @@
-body{
-    margin: 0;
-    padding: 0;
-    background-color: #f0f4f8;
-    box-sizing: border-box;
-}
+:root {
+    --main-bg: #f2f2f2;
+    --accent: #7AC74C;
+    --text-color: #333;
+    --card-bg: #fff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    }
 
-/*----------------------Header seccion: Start----------------------*/
-.header{
-    width: 100%;
-    height: 20vh;
-    display: flex;
-    justify-content: center;
-    background-color:#bb3026 ;
-    align-items: center;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
 
-.header__seeker{
-    width: 80%;
-    height: 3rem;
-    padding: 6px;
-    display: flex;
-    border-radius: 4px;
-    box-shadow: 0 0 19px rgb(43, 42, 42);
-    background-color:#434de4;
-    justify-content: center;
-    align-items: center;
-}
+    body {
+        background-color: var(--main-bg);
+        color: var(--text-color);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-.seeker__input-item{
-    width: 140px;
-    height: 25px;
-    border: none;
-    background-color: #e0e0e0;
-    border-radius: 8px 0 0 8px;
-    
-}
+    .header {
+        padding: 1rem;
+        width: 100%;
+        background-color: var(--accent);
+        box-shadow: 0 4px 6px var(--shadow);
+    }
 
-.seeker__input-item:focus{
-    
-    outline:2px solid #48e;
-}
+    .header__seeker {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
 
-.seeker__serch{
-    width: 60px;
-    height: 27px;
-    margin-right: 2px;
-    border-radius: 0 8px 8px 0;
-    border: none;
-    background-color: #4a90e2;
-    
-    border-left:2px solid #141414;
-    
-}
+    .seeker__input-item {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: box-shadow 0.3s ease;
+    }
 
-.seeker__serch:hover{
-    background-color: rgb(255, 255, 255);
-}
-/*----------------------Header seccion: END----------------------*/
+    .seeker__input-item:focus {
+      box-shadow: 0 0 5px var(--accent);
+      outline: none;
+    }
 
-/*----------------------Main seccion: Start----------------------*/
-.poke-view{
-    width: 100%;
-    min-height: 100vh; ;
-    background-color: #7AC74C;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
+    .seeker__serch {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-.poke-view__detaills{
-    margin: 10px;
-    display: grid;
-    grid-template-columns: repeat(3,  minmax(150px, 1fr));
-    grid-template-rows: repeat(2, minmax(150px, auto));
-    gap: 10px;
-}
+    .seeker__serch:hover {
+      background-color: #45a049;
+    }
 
-.detaills{
-    background-color: rgb(255, 255, 255);
-}
+    .poke-view {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 2rem;
+        gap: 2rem;
+        padding: 1rem;
+        width: 100%;
+        max-width: 1200px;
+        animation: fadeIn 1s ease-in-out;
+    }
 
-.title{
-    font-family: 'Press Start 2P', cursive; 
-    font-size: 15px;
-    margin-top: 0;
-    padding: 12px;
-    background-color: #e0e0e0;
-}
+    .poke-view__img-container {
+        flex: 1 1 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background-color: var(--card-bg);
+        border-radius: 16px;
+        box-shadow: 0 4px 10px var(--shadow);
+        animation: float 3s ease-in-out infinite;
+    }
 
-.detaills__evolute{
-    grid-column: 2 span;
-}
+    .img-container__image {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
 
-.paragraph{
-    font-family: 'Roboto', sans-serif;
-    color: #141414;
-    font-size: 22px;
-}
+    .poke-view__detaills {
+        flex: 2 1 400px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
 
-.poke-view__img-container{
-    flex-shrink: 0;
-    width: 500px;
-    height: 350px;
-}
+    .detaills {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 4px 8px var(--shadow);
+        animation: fadeInUp 0.6s ease forwards;
+    }
 
-.img-container__image{
-    width: 100%;
-    height: 100%;
-}
+    .title {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: #222;
+    }
+
+    .paragraph {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .detaills__evolute {
+        grid-column: span 2;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
