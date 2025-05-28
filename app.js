@@ -48,7 +48,7 @@ async function getEvoluted(url){
         console.log("conexion exitosa")
         return json
     } catch (error) {
-        $errors.textContent = `Error:${error.message || "A event error"}`
+        $errors.textContent = `Error:${error.message && "A event error"}`
     }
 }
 
@@ -139,8 +139,8 @@ document.addEventListener("submit" ,async e=> {
         }
         
     catch (error) {
+        $errors.textContent = `Error:${error.message  && "Pokemon not Found"}`
         $state.textContent = ""
-        $errors.textContent = `Error:${error?.message && "A event error"}`
     }
 
 })
