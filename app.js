@@ -1,13 +1,29 @@
+// === DOM ELEMENT REFERENCES ===
+// Input field where the user types the Pokémon name or ID.
 const $input = document.querySelector(".seeker__input-item")
+
+// Button used to trigger the search.
 const $btn = document.querySelector(".seeker__serch")
+
+// Image element to display the Pokémon.
 const $img = document.querySelector(".img-container__image")
 
+// Paragraph element to display the Pokémon's name and ID.
 const $nameDetaills = document.querySelector(".name__paragraph") 
+
+// Paragraph element to display the Pokémon's description.
 const $descDetaills = document.querySelector(".desc__paragraph")
+
+// Paragraph element to display the Pokémon's types.
 const $typeDetaills = document.querySelector(".type__paragraph")
+
+// Paragraph element to display the Pokémon's height and weight.
 const $dimensionsDetails = document.querySelector(".dimensions__paragraph")
+
+// Element to show status messages (e.g., loading, success).
 const $state = document.querySelector(".state")
 
+// Element to display error messages.
 const $errors = document.querySelector(".errorMJ")
 
 // Fetches data for a specific Pokémon from the PokéAPI
@@ -52,6 +68,20 @@ async function getEvoluted(url){
     }
 }
 
+// Receives an array of Pokémon names from an evolution chain,
+// fetches their images from the PokéAPI, and displays them in the DOM
+async function viweEvolutions(listEv){
+    const container = document.querySelector(".detaills__figure")
+    container.innerHTML = ` `
+    for (let index = 0; index < listEv.length; index++) {
+        const item = listEv[index];
+        const $figure = document.createElement("img")
+        $figure.classList.add("pokemon-evolution")
+        let path = await getData(item)
+        $figure.src = path.sprites.other.dream_world.front_default
+        container.appendChild($figure)
+    }
+}
 
 // Traverses an array of Pokémon types and appends each type as a <p> element into the .type__paragraph container.
 // Throws an error if the array is empty.
@@ -86,23 +116,44 @@ function listEvoluted(nodo){
         const nextPokemon = listEvoluted(next)
         lista.push(...nextPokemon)
     }
-
     return lista
 }
 
-// Receives an array of Pokémon names from an evolution chain,
-// fetches their images from the PokéAPI, and displays them in the DOM
-async function viweEvolutions(listEv){
-    const container = document.querySelector(".detaills__figure")
-    container.innerHTML = ` `
-    for (let index = 0; index < listEv.length; index++) {
-        const item = listEv[index];
-        const $figure = document.createElement("img")
-        $figure.classList.add("pokemon-evolution")
-        let path = await getData(item)
-        $figure.src = path.sprites.other.dream_world.front_default
-        container.appendChild($figure)
-    }
+// Updates the Pokémon image on the UI.
+function viwePokemonImg(url){
+    $img.src = url
+}
+
+// Updates the Pokémon name and ID in the details section.
+function viwePokemonName(name){
+    $nameDetaills.textContent = name
+}
+
+
+// Updates the Pokémon description in the details section.
+function viwePokemonDesc(description){
+    $descDetaills.textContent = description
+}
+
+// Displays all Pokémon-related information on the UI:
+// - Types
+// - Height and weight
+// - Evolution chain
+// - Image, name, and description
+function displayPokemonInfo(data, dataSpecies,dataEvolution){
+    traverseTypes(data.types)
+    conversorHeight(data.height,data.weight)
+    viweEvolutions(listEvoluted(dataEvolution.chain))
+    viwePokemonImg(data.sprites.other.dream_world.front_default)
+    viwePokemonName(`${data.species.name}(#${data.id})`)
+    viwePokemonDesc(dataSpecies.flavor_text_entries[0].flavor_text);
+}
+
+function showErrorContainer() {
+    document.querySelector(".container__error").style.display = "block"
+}
+function hideErrorContainer() {
+    document.querySelector(".container__error").style.display = "none"
 }
 
 // Clears the error and state messages from the user interface.
@@ -118,30 +169,24 @@ function recet(){
 // - Handles and displays errors if any occur
 document.addEventListener("submit" ,async e=> {
     e.preventDefault()
-        document.querySelector(".container__error").style.display ="block";
-
+    showErrorContainer()
     recet()
+    
     let valor = $input.value.trim()
-    if(valor === ""){throw new Error("Enter the Pokemon name or ID")}
+    if(valor === ""){throw new Error("Enter the Pokemon name or ID")} 
+    
     $state.textContent = "loading..."
     try {
         let data = await getData(valor)
         let dataSpecies = await getDataSpecies(valor)
         let dataEvolution = await getEvoluted(dataSpecies.evolution_chain.url)
         
-        
-        traverseTypes(data.types)
-        conversorHeight(data.height,data.weight)
-        viweEvolutions(listEvoluted(dataEvolution.chain))
-        $img.src =data.sprites.other.dream_world.front_default
-        $nameDetaills.textContent = `${data.species.name}(#${data.id})`
-        $descDetaills.textContent = dataSpecies.flavor_text_entries[0].flavor_text
+        displayPokemonInfo(data,dataSpecies,dataEvolution)
         recet()
-        document.querySelector(".container__error").style.display ="none";
+        hideErrorContainer()
     }
-    
     catch (error) {
-        document.querySelector(".container__error").style.display ="block";
+        showErrorContainer()
         $errors.textContent = `Error:${error.message  && "Pokemon not Found"}`
         $state.textContent = ""
     }
