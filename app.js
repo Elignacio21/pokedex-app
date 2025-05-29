@@ -107,6 +107,55 @@ function conversorHeight(height,weight){
     document.querySelector(".paragraph__weight").textContent = `weight:${weightInKg}kg`
 }
 
+const typeColors = {
+    water: "#6890F0",
+    grass: "#78C850",
+    electric: "#F8D030",
+    psychic: "#F85888",
+    ice: "#98D8D8",
+    dragon: "#7038F8",
+    dark: "#705848",
+    fairy: "#EE99AC",
+    normal: "#A8A878",
+    fighting: "#C03028",
+    flying: "#A890F0",
+    poison: "#A040A0",
+    ground: "#E0C068",
+    rock: "#B8A038",
+    bug: "#A8B820",
+    ghost: "#705898",
+    steel: "#B8B8D0",
+    fire: "#F08030",
+}
+
+function setHeaderColorByType(types){
+    document.querySelector(".header").style.backgroundColor = typeColors[types] || "#000"
+}
+
+const typeColorsMain = {
+    water: "#0B3D91",     
+    grass: "#1B5E20",      
+    electric: "#B8860B",   
+    psychic: "#8B008B",    
+    ice: "#4682B4",        
+    dark: "#1C1C1C",       
+    fairy: "#8B3A62",      
+    normal: "#4D4D4D",     
+    fighting: "#800000",  
+    flying: "#2F4F4F",     
+    poison: "#4B0082",    
+    ground: "#8B4513",    
+    rock: "#5C4033",      
+    bug: "#556B2F",        
+    ghost: "#2E0854",     
+    steel: "#3C3C3C",     
+    fire: "#8B2500",         
+}
+
+function setMainColorByType(types){
+    document.querySelector("body").style.backgroundColor = typeColorsMain[types] || "#000"
+}
+
 // Recursively traverses a Pokémon evolution chain to collect species names from each node.
 // Returns a flat array with all species involved in the evolution path.
 function listEvoluted(nodo){
@@ -180,7 +229,8 @@ document.addEventListener("submit" ,async e=> {
         let data = await getData(valor)
         let dataSpecies = await getDataSpecies(valor)
         let dataEvolution = await getEvoluted(dataSpecies.evolution_chain.url)
-        
+        setHeaderColorByType(data.types[0].type.name)
+        setMainColorByType(data.types[0].type.name)
         displayPokemonInfo(data,dataSpecies,dataEvolution)
         recet()
         hideErrorContainer()
