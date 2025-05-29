@@ -118,16 +118,17 @@ function recet(){
 // - Handles and displays errors if any occur
 document.addEventListener("submit" ,async e=> {
     e.preventDefault()
+        document.querySelector(".container__error").style.display ="block";
+
     recet()
     let valor = $input.value.trim()
-    
+    if(valor === ""){throw new Error("Enter the Pokemon name or ID")}
     $state.textContent = "loading..."
     try {
         let data = await getData(valor)
         let dataSpecies = await getDataSpecies(valor)
         let dataEvolution = await getEvoluted(dataSpecies.evolution_chain.url)
-
-        if(valor === ""){throw new Error("Enter the Pokemon name or ID")}
+        
         
         traverseTypes(data.types)
         conversorHeight(data.height,data.weight)
@@ -136,9 +137,11 @@ document.addEventListener("submit" ,async e=> {
         $nameDetaills.textContent = `${data.species.name}(#${data.id})`
         $descDetaills.textContent = dataSpecies.flavor_text_entries[0].flavor_text
         recet()
-        }
-        
+        document.querySelector(".container__error").style.display ="none";
+    }
+    
     catch (error) {
+        document.querySelector(".container__error").style.display ="block";
         $errors.textContent = `Error:${error.message  && "Pokemon not Found"}`
         $state.textContent = ""
     }
