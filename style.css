@@ -132,15 +132,28 @@
         gap: 1rem;
     }
 
+    @media (max-width: 700px) {
+    .poke-view__detaills {
+        grid-template-columns: 1fr; /* Una sola columna */
+        gap: .5rem;
+    }
+}
+
     .detaills {
         background-color: var(--card-bg);
         border-radius: 12px;
         padding: 1rem;
         box-shadow: 0 4px 8px var(--shadow);
-        animation: fadeInUp 0.6s ease forwards;
+        /* animation: fadeInUp 0.6s ease forwards; */
+        transition: transform 0.3s ease;
+    }
+
+    .detaills:hover{
+        transform: scale(1.02);
     }
 
     .title {
+        background-color: #f1efef;
         font-family: 'Press Start 2P', cursive;
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
@@ -148,6 +161,7 @@
     }
 
     .paragraph {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-size: 1rem;
         line-height: 1.5;
     }
@@ -158,7 +172,7 @@
 
     .detaills__figure{
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
     }
 

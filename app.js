@@ -103,8 +103,8 @@ function traverseTypes(arrayType){
 function conversorHeight(height,weight){
     let heightInCm = height*10
     let weightInKg = weight/10;
-    document.querySelector(".paragraph__height").textContent = `heigth:${heightInCm}Cm`
-    document.querySelector(".paragraph__weight").textContent = `weight:${weightInKg}kg`
+    document.querySelector(".paragraph__height").textContent = `height: ${heightInCm}cm`
+    document.querySelector(".paragraph__weight").textContent = `weight: ${weightInKg}kg`
 }
 
 const typeColors = {
@@ -231,6 +231,7 @@ document.addEventListener("submit" ,async e=> {
         let dataEvolution = await getEvoluted(dataSpecies.evolution_chain.url)
         setHeaderColorByType(data.types[0].type.name)
         setMainColorByType(data.types[0].type.name)
+
         displayPokemonInfo(data,dataSpecies,dataEvolution)
         recet()
         hideErrorContainer()
